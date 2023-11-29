@@ -18,5 +18,27 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        $data = [
+            [
+                'role' => 'admin'
+            ],
+            [
+                'role' => 'user'
+            ],
+
+        ];
+        foreach ($data as $role) {
+            \App\Models\Role::create(
+                $role
+            );
+        }
+
+        \App\Models\User::create([
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('@Admin123'),
+            'role_id' => 1
+        ]);
     }
 }
