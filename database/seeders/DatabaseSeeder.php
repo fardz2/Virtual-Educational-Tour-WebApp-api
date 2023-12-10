@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
         }
 
         \App\Models\User::create([
-            'name' => 'admin',
+            'username' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('@Admin123'),
             'role_id' => 1
