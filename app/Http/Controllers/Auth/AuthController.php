@@ -71,7 +71,13 @@ class AuthController extends Controller
     public function getInfo(Request $request)
     {
         $data = $request->user();
-        $role = $data->role;
-        return response()->json(['status' => 200, 'data' => $role], 200);
+
+        return response()->json(['status' => 200, 'data' => $data], 200);
+    }
+    public function editInfo(Request $request)
+    {
+        $user = User::find($request->user()->id);
+        $user->update($request->all());
+        return response()->json(["message" => "berhasil"], 200);
     }
 }

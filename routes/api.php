@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Article\ArticleController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,6 +18,10 @@ use App\Http\Controllers\Auth\AuthController;
 
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get("article", [ArticleController::class, 'index']);
+Route::get("article/{slug}", [ArticleController::class, 'show']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post("article", [ArticleController::class, 'store']);
+    Route::get("info", [AuthController::class, 'getInfo']);
+    Route::put("edit-info", [AuthController::class, 'editInfo']);
 });
